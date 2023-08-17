@@ -19,6 +19,9 @@ void main() {
 
   mandioca.cozinhar();
   limao.fazerSuco();
+
+  banana.separarIngredientes();
+  macadamia.fazerMassa();
 }
 
 class Fruta extends Alimento {
@@ -36,6 +39,21 @@ class Fruta extends Alimento {
   void fazerSuco() {
     print('Você fez um ótimo suco de $nome');
   }
+
+  @override
+  void separarIngredientes() {
+    print('Catar a $nome');
+  }
+
+  @override
+  void fazerMassa() {
+    print('Misturar a $nome com farinha, açucar, ovos...');
+  }
+ 
+  @override
+  void assar() {
+    print('Colocar no forno');
+  }
 }
 
 class Alimento {
@@ -49,7 +67,7 @@ class Alimento {
   }
 }
 
-class Legumes extends Alimento {
+class Legumes extends Alimento implements Bolo{
   bool isPrecisaCozinhar;
   
   Legumes(String nome, double peso, String cor, this.isPrecisaCozinhar):super(nome, peso, cor);
@@ -60,6 +78,21 @@ class Legumes extends Alimento {
     } else {
       print('O $nome nem precisa cozinhar');
     }
+  }
+
+  @override
+  void separarIngredientes() {
+    print('Catar a frunta');
+  }
+
+  @override
+  void fazerMassa() {
+    print('Misturar a fruta com farinha, açucar, ovos...');
+  }
+
+  @override
+  void assar() {
+    print('Colocar no forno');
   }
 }
 
@@ -81,4 +114,18 @@ class Nozes extends Fruta {
   double porcentagemOleoNatural;
 
   Nozes(String nome, double pesa, String cor, String sabor, int diasDesdeColheita, this.porcentagemOleoNatural): super(nome, pesa, cor, sabor, diasDesdeColheita);
+
+  @override
+  void fazerMassa() {
+    print('Tirar a casca');
+    super.fazerMassa();
+  }
+}
+
+//Classe Abstrata
+
+abstract class Bolo {
+  void assar();
+  void fazerMassa();
+  void separarIngredientes();
 }
